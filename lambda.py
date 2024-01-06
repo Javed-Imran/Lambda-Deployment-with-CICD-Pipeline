@@ -1,5 +1,5 @@
 def lambda_handler(event, context):
-    print("Hello, Lambda! This is a sample Lambda function.")
+    print("Hello, World!")
     return {
         'statusCode': 200,
 
