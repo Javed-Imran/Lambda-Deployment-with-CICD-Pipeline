@@ -5,13 +5,13 @@
 git clone https://github.com/harshartz/task.git
 
 export AWS_REGION='us-east-1'
-export AWS_ACCOUNT_ID='739742769383'
+export AWS_ACCOUNT_ID=
 export ECR_REPO_NAME='go-digi-task2'
 export IMAGE_NAME='helloworld-lambda'
 export LAMBDA_FUNCTION_NAME='ecr-trigger'
-export aws_access_key_id='AKIA2YPA24DT3JYL7YHB'
-export aws_secret_access_key_id='XmBXSGv9ioXosEtt+zGiVjdNKj7DIHNXIpsSH6cO'
-export IAM_ROLE_ARN='arn:aws:iam::739742769383:role/go-digi-task-role'
+export aws_access_key_id=
+export aws_secret_access_key_id=
+export IAM_ROLE_ARN=
 
 # Step-2 Configure AWS credentials
 aws configure set aws_access_key_id $aws_access_key_id
