@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_REGION = 'us-east1'
+        AWS_ACCOUNT_ID = ''
+        ECR_REPO_NAME = 'go-digi-task2'
+        IMAGE_NAME = 'helloworld-lambda'
+        LAMBDA_FUNCTION_NAME = 'ecr-trigger'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    git 'https://github.com/harshartz/task.git'
+                }
+            }
+        }
+
+        stage('Create a ECR repository & Authentication of Docker client') {
+            steps {
+                script {
+
+                    sh "aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
+                    sh "aws ecr create-repository --repository-name $ECR_REPO_NAME"
+                                     
+
+                }
+            }
+        }
+
+        stage('Build and Push Docker Image') {
+            steps {
+                script {
+                    sh "docker build -t $IMAGE_NAME ."
+                    sh "docker tag $IMAGE_NAME:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:latest"
+                    sh "docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:latest"
+                }
+            }
+        }
+        stage('Deploy Lambda Function') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'your-aws-credentials', variable: 'AWS_ACCESS_KEY_ID'),
+                                     string(credentialsId: 'your-aws-credentials', variable: 'AWS_SECRET_ACCESS_KEY')]) {
+                        sh "aws lambda create-function --function-name $LAMBDA_FUNCTION_NAME --package-type image --image-uri $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:latest"
+                    }
+                }
+            }
+        }
+    }
+}
