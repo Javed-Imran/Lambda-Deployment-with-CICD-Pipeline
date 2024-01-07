@@ -1,7 +1,5 @@
-FROM python:3.9.18-slim
+FROM public.ecr.aws/lambda/python:3.6.2024.01.05.16
 
-WORKDIR /my_app
+COPY lambda.py ${LAMBDA_TASK_ROOT}
 
-COPY lambda.py /my_app/
-
-CMD ["python", "lambda.py"]
+CMD ["lambda.handler"]
