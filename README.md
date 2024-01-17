@@ -34,8 +34,8 @@ Before you begin, ensure the following prerequisites are met:
 3. **Clone Repository:**
    - Clone the repository using the following commands:
      ```bash
-     git clone https://github.com/harshartz/task.git
-     cd task
+     git clone https://github.com/harshartz/Lambda-Deployment-with-CICD-Pipeline.git
+     cd Lambda-Deployment-with-CICD-Pipeline
      ```
 
 4. **Update Jenkinsfile:**
