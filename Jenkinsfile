@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION = 'ap-south-1'
-        AWS_ACCOUNT_ID = '054774128594'
+        AWS_REGION = 'us-east-1'
+        AWS_ACCOUNT_ID = '354918404626'
         ECR_REPO_NAME = 'go-digi-task2'
         IMAGE_NAME = 'helloworld-lambda'
         LAMBDA_FUNCTION_NAME = 'ecr-trigger'
-        IAM_ROLE_ARN = 'arn:aws:iam::054774128594:role/go-digi-task'
+        IAM_ROLE_ARN = 'arn:aws:iam::354918404626:role/go-digi-task'
     }
 
     stages {
