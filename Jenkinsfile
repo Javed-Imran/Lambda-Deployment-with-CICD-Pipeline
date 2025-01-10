@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         AWS_REGION = 'us-east-1'
-        AWS_ACCOUNT_ID = '354918404626'
+        AWS_ACCOUNT_ID = '111122223333'
         ECR_REPO_NAME = 'go-digi-task2'
         IMAGE_NAME = 'helloworld-lambda'
         LAMBDA_FUNCTION_NAME = 'ecr-trigger'
